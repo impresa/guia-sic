@@ -1,6 +1,9 @@
 /*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
 @import (inline) url('_parts/normalize.css');
 
+@import url('../bower_components/fontawesome/less/font-awesome');
+@fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.3.0/fonts";
+
 html {
     color: #222;
     font-size: 1em;
@@ -57,19 +60,90 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+// Styles
+@headerSize: 2em;
+@headerBg: #000;
+@headerTextColor: #fff;
+@transitionDuration: 300ms;
 
+body {
+  padding-top: @headerSize;
+}
 
+.global-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: @headerSize;
+  background: @headerBg;
+  color: @headerTextColor;
 
+  h1 {
+    font-size: 1em;
+    line-height: @headerSize;
+    margin: 0;
+  }
+}
 
+.global-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
 
+// entries
+.entries {
+  width: 100%;
+  overflow: hidden;
 
+  .entry {
+    position: absolute;
+    top: @headerSize;
+    width: 100%;
+    left: 0;
+    transition: left @transitionDuration;
+  }
 
+  .left {
+    left: -100%;
+  }
 
+  .right {
+    left: 100%;
+  }
+}
 
+.no-transition {
+  transition: none !important;
+}
 
+// rating
+.rating {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: no-repeat -90px -120px;
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+}
 
+.rating.ctp_10AP {
+  background-image: data-uri("../img/cpt_10_ap.png");
+}
 
+.rating.ctp_12AP {
+  background-image: data-uri("../img/cpt_12_ap.png");
+}
 
+.rating.ctp_16 {
+  background-image: data-uri("../img/cpt_16.png");
+}
+
+.rating.ctp_T {
+  background-image: data-uri("../img/cpt_t.png");
+}
 
 /* ==========================================================================
    Media Queries
@@ -196,30 +270,4 @@ textarea {
     h3 {
         page-break-after: avoid;
     }
-}
-
-//
-
-.tvshowRating {
-  display: block;
-  width: 20px;
-  height: 20px;
-  background-repeat: no-repeat;
-  background-position: -90px -120px
-}
-
-.tvshowRating.ctp_10AP {
-  background-image: data-url("../img/cpt_10_ap.png");
-}
-
-.tvshowRating.ctp_12AP {
-  background-image: data-url("../img/cpt_12_ap.png");
-}
-
-.tvshowRating.ctp_16 {
-  background-image: data-url("../img/cpt_16.png");
-}
-
-.tvshowRating.ctp_T {
-  background-image: data-url("../img/cpt_t.png");
 }

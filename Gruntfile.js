@@ -6,6 +6,13 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         less: {
             dist: {
+                options: {
+                    plugins: [
+                        new (require('less-plugin-autoprefix'))({
+                            browsers: ["> 1%", "last 2 versions", "Firefox ESR", "Opera 12.1", "ie >= 9"]
+                        })
+                    ]
+                },
                 files: [{
                     cwd: 'less/',
                     src: [ '!_**', '**.less' ],
