@@ -1,0 +1,218 @@
+{
+  "channels": [
+    {
+      "id": "int",
+      "name": "SIC Internacional",
+      "logoUrl": "/img/int.png",
+      "schedules": [
+        {
+          "date": 1424908800000,
+          "tvShows": [
+            {
+              "startDate": 1424930400000,
+              "duration": 900000,
+              "name": "SIC NOTICIAS",
+              "description": "JORNAL DE SÍNTESE",
+              "url": "http://sicnoticias.sapo.pt/",
+              "logoUrl": "http://images.cdn.impresa.pt/sic/2014-08-22-sicnot.jpg"
+            },
+            {
+              "startDate": 1424931300000,
+              "duration": 1200000,
+              "name": "PERDIDOS E ACHADOS",
+              "description": "PERDIDOS E ACHADOS",
+              "rating": "T",
+              "url": "http://sicnoticias.sapo.pt/programas/perdidoseachados",
+              "logoUrl": "http://images.cdn.impresa.pt/sic/2014-08-05-perdidos-e-achados.jpg"
+            },
+            {
+              "startDate": 1424932500000,
+              "duration": 1500000,
+              "name": "SUCESSO.PT",
+              "description": "SUCESSO.PT",
+              "rating": "T",
+              "url": "http://sicnoticias.sapo.pt/programas/sucessopt",
+              "logoUrl": "http://images.cdn.impresa.pt/sic/2015-02-12-sucessoptjpg"
+            },
+            {
+              "startDate": 1424934000000,
+              "duration": 6300000,
+              "name": "EDIÇÃO DA MANHÃ",
+              "description": "EDIÇÃO DA MANHÃ",
+              "url": "http://sicnoticias.sapo.pt/programas/edicaodamanha/",
+              "logoUrl": "http://images.cdn.impresa.pt/sic/2014-08-05-edicao_manha.jpg"
+            },
+            {
+              "startDate": 1424940300000,
+              "duration": 5400000,
+              "name": "A VIDA NAS CARTAS - O DILEMA",
+              "description": "A VIDA NAS CARTAS - O DILEMA SÉRIE 3",
+              "rating": "T",
+              "url": "/Programas/avidanascartas",
+              "logoUrl": "http://images.cdn.impresa.pt/sic/2013-03-01-top_2.jpg"
+            },
+            {
+              "startDate": 1424945700000,
+              "duration": 9900000,
+              "name": "QUERIDAS MANHÃS",
+              "description": "QUERIDAS MANHÃS",
+              "rating": "T",
+              "url": "/Programas/queridasmanhas",
+              "logoUrl": "http://images.cdn.impresa.pt/sic/2014-07-30-manhas.jpg"
+            },
+            {
+              "startDate": 1424955600000,
+              "duration": 6300000,
+              "name": "PRIMEIRO JORNAL",
+              "description": "PRIMEIRO JORNAL",
+              "url": "http://sicnoticias.sapo.pt/programas/primeirojornal/",
+              "logoUrl": "http://images.cdn.impresa.pt/sic/2014-08-05-primeiro_jornal.jpg"
+            },
+            {
+              "startDate": 1424960100000,
+              "duration": 4500000,
+              "name": "MAIS MULHER SÉRIE 6",
+              "description": "MAIS MULHER SÉRIE 6",
+              "rating": "T"
+            },
+            {
+              "startDate": 1424964600000,
+              "duration": 900000,
+              "name": "ESPAÇOS & CASAS",
+              "description": "ESPAÇOS & CASAS",
+              "rating": "T"
+            },
+            {
+              "startDate": 1424965500000,
+              "duration": 11700000,
+              "name": "GRANDE TARDE",
+              "description": "GRANDE TARDE",
+              "rating": "T",
+              "url": "/Programas/grande_tarde",
+              "logoUrl": "http://images.cdn.impresa.pt/sic/2014-09-25-grandetarde_novo-site_logo.jpg"
+            },
+            {
+              "startDate": 1424977200000,
+              "duration": 3600000,
+              "name": "ALÔ PORTUGAL 2015 SÉRIE 7",
+              "description": "ALÔ PORTUGAL 2015 SÉRIE 7",
+              "rating": "T"
+            },
+            {
+              "startDate": 1424980800000,
+              "duration": 2700000,
+              "name": "JORNAL DA NOITE",
+              "description": "JORNAL DA NOITE",
+              "url": "http://sicnoticias.sapo.pt/programas/jornaldanoite/",
+              "logoUrl": "http://images.cdn.impresa.pt/sic/2014-08-05-jornal_noite.jpg"
+            },
+            {
+              "startDate": 1424983500000,
+              "duration": 2700000,
+              "name": "GRANDE REPORTAGEM SÉRIE 3",
+              "description": "OS NOSSOS FILHOS DA UCRÂNIA",
+              "rating": "T"
+            },
+            {
+              "startDate": 1424986200000,
+              "duration": 1800000,
+              "name": "SOL DE INVERNO",
+              "description": "SOL DE INVERNO",
+              "rating": "T"
+            },
+            {
+              "startDate": 1424988000000,
+              "duration": 1800000,
+              "name": "SOL DE INVERNO",
+              "description": "SOL DE INVERNO",
+              "rating": "T"
+            },
+            {
+              "startDate": 1424989800000,
+              "duration": 1800000,
+              "name": "IMAGENS DE MARCA",
+              "description": "IMAGENS DE MARCA",
+              "rating": "T"
+            },
+            {
+              "startDate": 1424991600000,
+              "duration": 1800000,
+              "name": "LAÇOS DE SANGUE (ORIGINAIS)",
+              "description": "LAÇOS DE SANGUE (ORIGINAIS)"
+            },
+            {
+              "startDate": 1424993400000,
+              "duration": 1800000,
+              "name": "LAÇOS DE SANGUE (ORIGINAIS)",
+              "description": "LAÇOS DE SANGUE (ORIGINAIS)"
+            },
+            {
+              "startDate": 1424995200000,
+              "duration": 3600000,
+              "name": "JORNAL DA MEIA NOITE",
+              "description": "JORNAL DA MEIA NOITE",
+              "rating": "T"
+            },
+            {
+              "startDate": 1424998800000,
+              "duration": 1800000,
+              "name": "SOL DE INVERNO",
+              "description": "SOL DE INVERNO",
+              "rating": "T"
+            },
+            {
+              "startDate": 1425000600000,
+              "duration": 1800000,
+              "name": "SOL DE INVERNO",
+              "description": "SOL DE INVERNO",
+              "rating": "T"
+            },
+            {
+              "startDate": 1425002400000,
+              "duration": 3600000,
+              "name": "ALÔ PORTUGAL 2015 SÉRIE 7",
+              "description": "ALÔ PORTUGAL 2015 SÉRIE 7",
+              "rating": "T"
+            },
+            {
+              "startDate": 1425006000000,
+              "duration": 1800000,
+              "name": "LAÇOS DE SANGUE (ORIGINAIS)",
+              "description": "LAÇOS DE SANGUE (ORIGINAIS)"
+            },
+            {
+              "startDate": 1425002400000,
+              "duration": 3000000,
+              "name": "CARTAZ CULTURAL",
+              "description": "CARTAZ CULTURAL - SÉRIE 1",
+              "rating": "T",
+              "url": "/Programas",
+              "logoUrl": "http://images.cdn.impresa.pt/sic/2014-09-16-cartaz.jpg"
+            },
+            {
+              "startDate": 1425009600000,
+              "duration": 3600000,
+              "name": "CURTO CIRCUITO - SERIE 14",
+              "description": "CURTO CIRCUITO - SERIE 14",
+              "rating": "T"
+            },
+            {
+              "startDate": 1425013200000,
+              "duration": 1800000,
+              "name": "CINETENDINHA",
+              "description": "CINETENDINHA",
+              "rating": "T"
+            },
+            {
+              "startDate": 1425015000000,
+              "duration": 1800000,
+              "name": "PERDIDOS E ACHADOS",
+              "description": "PERDIDOS E ACHADOS",
+              "rating": "T"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
