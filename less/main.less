@@ -1,4 +1,6 @@
 /*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400italic,700italic,400,700);
+
 @import (inline) url('_parts/normalize.css');
 
 @import url('../bower_components/fontawesome/less/font-awesome');
@@ -79,6 +81,7 @@ textarea {
 @transitionDuration: 300ms;
 
 body {
+  font-family: 'Roboto Condensed', sans-serif;
   background: @bodyBg;
   padding-top: @headerSize;
 }
@@ -95,8 +98,9 @@ body {
 
   h1 {
     font-size: 1em;
+    font-weight: normal;
     line-height: @headerSize;
-    margin: 0;
+    margin: 0 0.8em;
   }
 }
 
@@ -159,22 +163,27 @@ body {
   }
 
   article {
-    @padding: 10px;
+    @padding: 15px;
+    @imgPadding: 12px;
     @imgSize: 120px;
 
+    position: relative;
     font-size: 12px;
-    padding: @padding @padding @padding (2*@padding + @imgSize);
+    line-height: 1.3em;
+    padding: @padding @padding 0 (@imgPadding + @imgSize + @padding);
+    min-height: @imgSize * 0.7;
 
     h2 {
       font-size: 1.3em;
-      color: @bodyHeaderColor
+      color: @bodyHeaderColor;
+      margin-top: 0;
     }
 
     img {
-      margin-top: @padding;
-      float: left;
+      position: absolute;
       width: @imgSize;
-      margin-left: -(@padding + @imgSize);
+      top: @padding;
+      left: @padding;
     }
   }
 
@@ -253,6 +262,7 @@ body {
 
 .section-header {
   min-height: 5.5em;
+  margin-bottom: 1em;
 }
 
 .no-transition {
