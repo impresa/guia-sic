@@ -16,13 +16,13 @@
         getCurrentShowIndex: function() {
             //var now = +new Date(),
             // Hardcode a time
-            var now = 1424949479677,
+            var now = 1424980800000,
                 show = 0;
 
             for (var i = 0; i < this.models.length; i++) {
-                var endTime = this.models[i].get('startDate') + this.models[i].get('duration');
+                var startTime = this.models[i].get('startDate');
 
-                if (endTime < now) {
+                if (startTime <= now) {
                     show = i;
                 } else {
                     return show;
