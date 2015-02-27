@@ -11,7 +11,7 @@
                 show = 0;
 
             for (var i = 0; i < this.models.length; i++) {
-                var endTime = this.models.get('startDate') + this.model.get('duration');
+                var endTime = this.models[i].get('startDate') + this.models[i].get('duration');
 
                 if (endTime < now) {
                     show = i;
@@ -162,12 +162,13 @@
             var pager = new SectionHandler($content);
 
             channel = data['channels'][0];
-            shows = new Backbone.Collection(channel['schedules'][0]['tvShows']);
+            shows = new ShowC(channel['schedules'][0]['tvShows']);
 
+            idx = shows.getCurrentShowIndex();
             pager.insertRight(shows.at(idx));
 
             function goRight() {
-                if (idx + 1 > shows.length) {
+                if (idx + 1 >= shows.length) {
                     return;
                 }
 
