@@ -61,12 +61,25 @@ textarea {
    ========================================================================== */
 
 // Styles
+@bodyBg: #e6e6e6;
+@bodyTextColor: #626262;
+@bodyHeaderColor: #070707;
+
 @headerSize: 2em;
-@headerBg: #000;
+@headerBg: #2078cb;
+@headerBg2: rgb(39, 49, 83);
 @headerTextColor: #fff;
+
+@timelineBg: #214475;
+@timelineTextColor: #fff;
+@progressBarBg: #fc4f20;
+@timelineFontSize: 38px;
+@timelineSize: 56px;
+
 @transitionDuration: 300ms;
 
 body {
+  background: @bodyBg;
   padding-top: @headerSize;
 }
 
@@ -89,9 +102,17 @@ body {
 
 .global-nav {
   position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 1;
+  bottom: 0.3em;
+  right: 0.3em;
+  z-index: 5;
+
+  button {
+    font-size: 42px;
+    color: @timelineBg;
+    background: none;
+    border: 0;
+    outline: 0;
+  }
 }
 
 #next,  #prev {
@@ -117,6 +138,12 @@ body {
 .entries {
   width: 100%;
   overflow: hidden;
+  color: @bodyTextColor;
+
+  a {
+    text-decoration: none;
+    color: @bodyTextColor;
+  }
 
   .entry {
     position: absolute;
@@ -131,6 +158,26 @@ body {
     }
   }
 
+  article {
+    @padding: 10px;
+    @imgSize: 120px;
+
+    font-size: 12px;
+    padding: @padding @padding @padding (2*@padding + @imgSize);
+
+    h2 {
+      font-size: 1.3em;
+      color: @bodyHeaderColor
+    }
+
+    img {
+      margin-top: @padding;
+      float: left;
+      width: @imgSize;
+      margin-left: -(@padding + @imgSize);
+    }
+  }
+
   .left {
     left: -100%;
   }
@@ -138,6 +185,74 @@ body {
   .right {
     left: 100%;
   }
+}
+
+.header-wrapper {
+  position: relative;
+  color: @timelineTextColor;
+  background: @timelineBg;
+  width: 100%;
+  height: @timelineSize;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  }
+
+  h1, h2 {
+    font-size: @timelineFontSize;
+    font-weight: normal;
+    position: absolute;
+    margin: 0;
+    bottom: -4px;
+  }
+
+  h1 {
+    left: 0.3em;
+  }
+
+  h2 {
+    opacity: 0.3;
+    right: -0.3em;
+  }
+}
+
+.progress-bar {
+  background: @progressBarBg;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+}
+
+.header-bottom {
+  background: linear-gradient(to bottom, @headerBg 0%, @headerBg2 100%);
+  color: @headerTextColor;
+  padding: 1em 1.2em 3em;
+
+  h2 {
+    margin: 0 0 0.4em;
+    font-size: 24px;
+    line-height: 1.3em;
+  }
+
+  .description {
+    opacity: 0.7;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.3em;
+  }
+}
+
+.section-header {
+  min-height: 5.5em;
 }
 
 .no-transition {

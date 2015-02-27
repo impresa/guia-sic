@@ -1,5 +1,8 @@
 (function () {
 
+    // TODO LN: use current time instead. This is just for demo purposes
+    var NOW = 1424955595000;
+
     var env = new nunjucks.Environment();
 
     env.addFilter('dateformat', function (date, formatStr) {
@@ -25,15 +28,15 @@
     var ShowC = Backbone.Collection.extend({
         model: ShowM,
         getCurrentShowIndex: function () {
+            // TODO LN: don't hardcode the time
             //var now = +new Date(),
-            // Hardcode a time
-            var now = 1424945700000,
-                show = 0;
+            //    show = 0;
+            var show = 0;
 
             for (var i = 0; i < this.models.length; i++) {
                 var startTime = this.models[i].get('startDate');
 
-                if (startTime <= now) {
+                if (startTime <= NOW) {
                     show = i;
                 } else {
                     return show;
@@ -116,6 +119,10 @@
         hide: function () {
             this.$el.hide();
             return this;
+        },
+        empty: function () {
+            this.$el.empty();
+            return this;
         }
     }, {
         TEMPLATE_NAME: 'section'
@@ -141,7 +148,6 @@
 
     SectionHandler.prototype.insertRight = function insertRight(model) {
         this._$containers[1].setModel(model);
-
         _doTransition(this._$containers[1], this._$containers[0], 'right', 'left', 'current');
 
         this._$containers.unshift(this._$containers.pop());
@@ -155,6 +161,8 @@
         this._$containers = this._$containers.concat(this._$containers.shift());
     };
 
+    var clearTimer;
+
     function _doTransition($new, $current, fromClass, toClass, activeClass) {
         $new.setPosition(fromClass, false).render();
 
@@ -164,10 +172,15 @@
         $new.setPosition(activeClass);
 
         // TODO LN: event instead of timer
-        setTimeout(function() {
+        setTimeout(function($new) {
             $(document).scrollTop(0);
             $new.$el.css('top', '');
-        }, 300);
+        }, 300, $new);
+
+        clearTimeout(clearTimer);
+        clearTimer = setTimeout(function($current) {
+            $current.empty();
+        }, 500, $current);
     }
 
     function _forceRedraw(element) {
@@ -183,38 +196,27 @@
     function init() {
         var $content = $('#main-content');
 
-        var idx = 0;
-
-        var realTimeIdx = 0;
-
-        var timer;
+        var idx = 0,
+            realTimeIdx = 0,
+            timer;
 
         $.getJSON('data/epg.json').then(function (data) {
-            var channel, shows;
+            var pager, channel, shows, show;
 
-            var pager = new SectionHandler($content);
-
-            channel = data['channels'][0];
-            shows = new ShowC(channel['schedules'][0]['tvShows']);
-
-            realTimeIdx = idx = shows.getCurrentShowIndex();
-
-            var show = shows.at(idx);
-            show.loadEntries();
-            pager.insertRight(show);
-
-            setCurrent();
+            // TODO LN: suspend the timer when the user is interacting with the page (scroll, taps, etc)
+            $(document).on('scroll', function() {
+                clearTimeout(timer);
+            });
 
             function setCurrent() {
-                $('#now').hide();
+                $('.js-now').hide();
 
                 // TODO LN: calculate the time until the end of the show instead of a hardcoded value
-                // TODO LN: suspend the timer when the user is interacting with the page (scroll, taps, etc)
                 timer = setTimeout(nextShow, 5000);
             }
 
             function unsetCurrent() {
-                $('#now').show();
+                $('.js-now').show();
 
                 clearTimeout(timer);
             }
@@ -258,10 +260,25 @@
                 }
             }
 
+            pager = new SectionHandler($content);
+
+            channel = data['channels'][0];
+            shows = new ShowC(channel['schedules'][0]['tvShows']);
+
+            console.log(shows.length);
+
+            realTimeIdx = idx = shows.getCurrentShowIndex();
+
+            show = shows.at(idx);
+            show.loadEntries();
+            pager.insertRight(show);
+
+            setCurrent();
+
             $('#prev').click(goLeft);
             $('#next').click(goRight);
 
-            $('#now').click(function() {
+            $(document.body).on('click', '.js-now', function() {
                 var newIdx = shows.getCurrentShowIndex();
 
                 var show = shows.at(newIdx);

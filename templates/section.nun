@@ -1,19 +1,26 @@
-<header>
+<header class="section-header">
     {# TODO LN: format date #}
-    <h1>{{ it.startDate | dateformat("HH:mm") }}</h1>
-    <span class="progress-bar"></span>
+    <div class="header-wrapper">
+        <span class="progress-bar" style="width: 10%"></span>
+        <h1>{{ it.startDate | dateformat("HH:mm") }}</h1>
+        <h2>{{ (it.startDate + it.duration) | dateformat("HH:mm") }}</h2>
+    </div>
 
-    {% if (it.logoUrl) %}
-    <img src="{{ it.logoUrl }}" class="thumb"/>
-    {% endif %}
+    <div class="header-bottom">
+        {#{% if (it.logoUrl) %}#}
+            {#<img src="{{ it.logoUrl }}" class="thumb"/>#}
+        {#{% endif %}#}
 
-    <h2>{{ it.title }}</h2>
+        <h2>{{ it.name }}</h2>
 
-    <p class="description">{{ it.description }}</p>
+        {% if it.description and it.name != it.description %}
+        <p class="description">{{ it.description }}</p>
+        {% endif %}
 
-    {% if (it.rating) %}
-    <p class="rating ctp_{{ it.rating }}">{{ it.rating }}</p>
-    {% endif %}
+        {#{% if (it.rating) %}#}
+            {#<p class="rating ctp_{{ it.rating }}">{{ it.rating }}</p>#}
+        {#{% endif %}#}
+    </div>
 </header>
 {% for entry in it.entries %}
     {% include 'article' %}

@@ -55,7 +55,7 @@
               "startDate": 1424945700000,
               "duration": 9900000,
               "name": "QUERIDAS MANHÃS",
-              "description": "QUERIDAS MANHÃS",
+              "description": "TODOS OS DIAS",
               "rating": "T",
               "url": "/Programas/queridasmanhas",
               "logoUrl": "http://images.cdn.impresa.pt/sic/2014-07-30-manhas.jpg"
@@ -64,7 +64,7 @@
               "startDate": 1424955600000,
               "duration": 6300000,
               "name": "PRIMEIRO JORNAL",
-              "description": "PRIMEIRO JORNAL",
+              "description": "INFORMAÇÃO",
               "url": "http://sicnoticias.sapo.pt/programas/primeirojornal/",
               "logoUrl": "http://images.cdn.impresa.pt/sic/2014-08-05-primeiro_jornal.jpg"
             },
