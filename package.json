@@ -1,10 +1,12 @@
 {
   "name": "guia-sic",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "Gruntfile.js",
-  "author": "",
-  "license": "ISC",
+  "authors": [
+    "Luis Nabais <lnabais@impresa.pt>"
+  ],
+  "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-less": "^1.0.0",
