@@ -25,105 +25,8 @@
         <button class="back">Agora</button>
     </nav>
 
-    <main class="entries">
-        <section class="entry left" data-start="startTime" data-end="endDate">
-            <header>
-                <h1>HH:MM</h1>
-                <span class="progress-bar"></span>
-
-                <img src="http://placehold.it/126x64" class="thumb"/>
-
-                <h2>Show Title</h2>
-
-                <p class="description">Show Description</p>
-
-                <p class="rating ctp_T">T</p>
-            </header>
-            <a href="url" target="_blank">
-                <article>
-                    <img src="http://placehold.it/126x64" class="thumb"/>
-
-                    <h2>Title</h2>
-
-                    <p class="description">Lead</p>
-                </article>
-            </a>
-            <a href="url" target="_blank">
-                <article>
-                    <img src="http://placehold.it/126x64" class="thumb"/>
-
-                    <h2>Title</h2>
-
-                    <p class="description">Lead</p>
-                </article>
-            </a>
-        </section>
-
-        <section class="entry current" data-start="startTime" data-end="endDate">
-            <header>
-                <h1>HH:MM</h1>
-                <span class="progress-bar"></span>
-
-                <img src="http://placehold.it/126x64" class="thumb"/>
-
-                <h2>Show Title</h2>
-
-                <p class="description">Show Description</p>
-
-                <p class="rating ctp_12AP">T</p>
-            </header>
-            <a href="url" target="_blank">
-                <article>
-                    <img src="http://placehold.it/126x64" class="thumb"/>
-
-                    <h2>Title</h2>
-
-                    <p class="description">Lead</p>
-                </article>
-            </a>
-            <a href="url" target="_blank">
-                <article>
-                    <img src="http://placehold.it/126x64" class="thumb"/>
-
-                    <h2>Title</h2>
-
-                    <p class="description">Lead</p>
-                </article>
-            </a>
-        </section>
-
-        <section class="entry right" data-start="startTime" data-end="endDate">
-            <header>
-                <h1>HH:MM</h1>
-                <span class="progress-bar"></span>
-
-                <img src="http://placehold.it/126x64" class="thumb"/>
-
-                <h2>Show Title</h2>
-
-                <p class="description">Show Description</p>
-
-                <p class="rating ctp_16">T</p>
-            </header>
-            <a href="url" target="_blank">
-                <article>
-                    <img src="http://placehold.it/126x64" class="thumb"/>
-
-                    <h2>Title</h2>
-
-                    <p class="description">Lead</p>
-                </article>
-            </a>
-            <a href="url" target="_blank">
-                <article>
-                    <img src="http://placehold.it/126x64" class="thumb"/>
-
-                    <h2>Title</h2>
-
-                    <p class="description">Lead</p>
-                </article>
-            </a>
-        </section>
+    <main class="entries" id="main-content">
+        <p class="loading">Loading...</p>
     </main>
 
     <!-- Libraries -->
@@ -131,7 +34,8 @@
     <script src="bower_components/underscore/underscore-min.js"></script>
     <script src="bower_components/nunjucks/browser/nunjucks.min.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
-    <!-- Main JS file -->
+    <!-- App code -->
+    <script src="js/templates.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

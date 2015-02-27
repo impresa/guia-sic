@@ -3,7 +3,7 @@
     {
       "id": "int",
       "name": "SIC Internacional",
-      "logoUrl": "/img/int.png",
+      "logoUrl": "img/int.png",
       "schedules": [
         {
           "date": 1424908800000,

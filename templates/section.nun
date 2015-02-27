@@ -1,0 +1,20 @@
+<header>
+    {# TODO LN: format date #}
+    <h1>{{ it.startDate }}</h1>
+    <span class="progress-bar"></span>
+
+    {% if (it.logoUrl) %}
+    <img src="{{ it.logoUrl }}" class="thumb"/>
+    {% endif %}
+
+    <h2>{{ it.title }}</h2>
+
+    <p class="description">{{ it.description }}</p>
+
+    {% if (it.rating) %}
+    <p class="rating ctp_{{ it.rating }}">{{ it.rating }}</p>
+    {% endif %}
+</header>
+{% for entry in it.entries %}
+    {% include 'article.nun' %}
+{% endfor %}

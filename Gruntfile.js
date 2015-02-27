@@ -1,5 +1,5 @@
 /* jshint node:true */
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
@@ -15,19 +15,38 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     cwd: 'less/',
-                    src: [ '!_**', '**.less' ],
+                    src: ['!_**', '**.less'],
                     dest: 'css/',
                     ext: '.css',
                     expand: true
                 }]
             }
         },
-        watch: {
-            dist: {
-                files: ['less/**.less'],
-                tasks: [ 'less' ],
+        nunjucks: {
+            templates: {
+                baseDir: 'templates/',
+                src: 'templates/**.nun',
+                dest: 'js/templates.js',
                 options: {
-                    spawn: false
+                    name: function (filename) {
+                        return filename.replace((/\//g), '.').slice(0, -4);
+                    }
+                }
+            }
+        },
+        watch: {
+            styles: {
+                files: ['less/**.less'],
+                tasks: ['less'],
+                options: {
+                    interrupt: true
+                }
+            },
+            templates: {
+                files: ['templates/**'],
+                tasks: ['nunjucks'],
+                options: {
+                    interrupt: true
                 }
             }
         }
@@ -37,7 +56,7 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     // Default task(s).
-    grunt.registerTask('build', ['less']);
+    grunt.registerTask('build', ['less', 'nunjucks']);
     grunt.registerTask('debug', ['build', 'watch']);
 
     grunt.registerTask('default', ['build']);

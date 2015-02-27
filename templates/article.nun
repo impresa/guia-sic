@@ -1,0 +1,9 @@
+<article>
+    <a href="{{ entry.url }}" target="_blank">
+        <img src="{{ entry.thumb }}" class="thumb"/>
+
+        <h2>{{ entry.title }}</h2>
+
+        <p class="description">{{ entry.description }}</p>
+    </a>
+</article>
