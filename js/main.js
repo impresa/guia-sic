@@ -1,7 +1,7 @@
 (function () {
 
     // TODO LN: use current time instead. This is just for demo purposes
-    var NOW = 1424955595000;
+    var NOW = 1424955600000 - (10 * 1000);
 
     var env = new nunjucks.Environment();
 
@@ -193,37 +193,30 @@
         }
     }
 
+    // App logic
     function init() {
         var $content = $('#main-content');
 
         var idx = 0,
             realTimeIdx = 0,
-            timer;
+            lock = false;
 
         $.getJSON('data/epg.json').then(function (data) {
             var pager, channel, shows, show;
 
             // TODO LN: suspend the timer when the user is interacting with the page (scroll, taps, etc)
             $(document).on('scroll', function() {
-                clearTimeout(timer);
+                lock = true;
             });
 
             function setCurrent() {
                 $('.js-now').hide();
-
-                // TODO LN: calculate the time until the end of the show instead of a hardcoded value
-                timer = setTimeout(nextShow, 5000);
+                lock = false;
             }
 
             function unsetCurrent() {
                 $('.js-now').show();
-
-                clearTimeout(timer);
-            }
-
-            function nextShow() {
-                realTimeIdx = idx + 1;
-                goRight();
+                lock = true;
             }
 
             function goRight() {
@@ -274,6 +267,17 @@
             pager.insertRight(show);
 
             setCurrent();
+
+            setInterval(function updateRealTime() {
+                // increment the fake time
+                NOW += 1000;
+
+                realTimeIdx = shows.getCurrentShowIndex();
+
+                if (idx !== realTimeIdx && !lock) {
+                    goRight();
+                }
+            }, 1000);
 
             $('#prev').click(goLeft);
             $('#next').click(goRight);
