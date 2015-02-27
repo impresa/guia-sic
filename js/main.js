@@ -1,7 +1,7 @@
 (function () {
 
     // TODO LN: use current time instead. This is just for demo purposes
-    var NOW = 1424955600000 - (10 * 1000);
+    var NOW = 1424955600000 - (300 * 1000);
 
     var env = new nunjucks.Environment();
 
@@ -92,6 +92,13 @@
 
             this.render();
         },
+        render: function() {
+            SICV.prototype.render.apply(this, arguments);
+
+            this.updateTime();
+
+            return this;
+        },
         setPosition: function (position, transition) {
             transition = transition === undefined;
 
@@ -123,6 +130,28 @@
         empty: function () {
             this.$el.empty();
             return this;
+        },
+        updateTime: function() {
+            if (!this.model) {
+                return this;
+            }
+
+            this._width = 0;
+
+            var start = this.model.get('startDate'),
+                duration = this.model.get('duration');
+
+            if (NOW > start + duration) {
+                // Finished
+                this._width = 100;
+            } else if (NOW < start) {
+                // Not airing yet
+                this._width = 0;
+            } else {
+                this._width = ((NOW - start) / duration * 100);
+            }
+
+            this.$('.progress-bar').css('width', this._width + '%');
         }
     }, {
         TEMPLATE_NAME: 'section'
@@ -159,6 +188,12 @@
         _doTransition(this._$containers[1], this._$containers[0], 'left', 'right', 'current');
 
         this._$containers = this._$containers.concat(this._$containers.shift());
+    };
+
+    SectionHandler.prototype.getCurrent = function getCurrent() {
+        return this._$containers.filter(function(item) {
+            return item.position === 'current';
+        }).shift();
     };
 
     var clearTimer;
@@ -268,16 +303,29 @@
 
             setCurrent();
 
+            var c = 10;
+
             setInterval(function updateRealTime() {
                 // increment the fake time
-                NOW += 1000;
+                //NOW += 1000;
+                var MULTIPLIER = 30;
+                NOW += 500 * MULTIPLIER;
 
                 realTimeIdx = shows.getCurrentShowIndex();
 
                 if (idx !== realTimeIdx && !lock) {
                     goRight();
+                } else {
+                    var page = pager.getCurrent();
+                    page.updateTime();
                 }
-            }, 1000);
+
+                if (c % 10 === 0) {
+                    console.log("The time is now %s", moment(NOW).format("HH:mm:ss"));
+                }
+
+                c++;
+            }, 500);
 
             $('#prev').click(goLeft);
             $('#next').click(goRight);
