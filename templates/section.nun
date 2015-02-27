@@ -1,6 +1,6 @@
 <header>
     {# TODO LN: format date #}
-    <h1>{{ it.startDate }}</h1>
+    <h1>{{ it.startDate | dateformat("HH:mm") }}</h1>
     <span class="progress-bar"></span>
 
     {% if (it.logoUrl) %}

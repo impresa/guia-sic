@@ -1,5 +1,12 @@
 (function () {
 
+    var env = new nunjucks.Environment();
+
+    env.addFilter('dateformat', function(date, formatStr) {
+        return moment(date).format(formatStr);
+    });
+
+    // Models
     var ShowM = Backbone.Model.extend({
 
     });
@@ -7,7 +14,9 @@
     var ShowC = Backbone.Collection.extend({
         model: ShowM,
         getCurrentShowIndex: function() {
-            var now = +new Date(),
+            //var now = +new Date(),
+            // Hardcode a time
+            var now = 1424949479677,
                 show = 0;
 
             for (var i = 0; i < this.models.length; i++) {
@@ -24,6 +33,7 @@
         }
     });
 
+    // Views
     var SICV = Backbone.View.extend({
         initialize: function () {
             this.listenTo(this.collection || this.model, 'reset change add', this.render);
@@ -41,7 +51,7 @@
             return this;
         },
         template: function (data) {
-            return nunjucks.render(this.constructor.TEMPLATE_NAME, {
+            return env.render(this.constructor.TEMPLATE_NAME, {
                 it: data
             });
         }
@@ -97,7 +107,7 @@
             return this;
         }
     }, {
-        TEMPLATE_NAME: 'templates.section'
+        TEMPLATE_NAME: 'section'
     });
 
     var SectionHandler = function SectionHandler($el, opts) {
