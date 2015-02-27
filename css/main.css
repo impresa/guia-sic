@@ -2319,6 +2319,19 @@ body {
   width: 50px;
   z-index: 3;
   background: 0;
+  font-size: 3em;
+  margin-top: -0.7em;
+  color: rgba(252, 79, 32, 0.4);
+}
+#next i,
+#prev i {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  #next i,
+  #prev i {
+    display: inline;
+  }
 }
 #next {
   right: 0;
