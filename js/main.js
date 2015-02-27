@@ -158,8 +158,16 @@
     function _doTransition($new, $current, fromClass, toClass, activeClass) {
         $new.setPosition(fromClass, false).render();
 
+        $new.$el.css('top', $(document).scrollTop());
+
         $current.setPosition(toClass);
         $new.setPosition(activeClass);
+
+        // TODO LN: event instead of timer
+        setTimeout(function() {
+            $(document).scrollTop(0);
+            $new.$el.css('top', '');
+        }, 300);
     }
 
     function _forceRedraw(element) {
@@ -177,6 +185,10 @@
 
         var idx = 0;
 
+        var realTimeIdx = 0;
+
+        var timer;
+
         $.getJSON('data/epg.json').then(function (data) {
             var channel, shows;
 
@@ -185,11 +197,32 @@
             channel = data['channels'][0];
             shows = new ShowC(channel['schedules'][0]['tvShows']);
 
-            idx = shows.getCurrentShowIndex();
+            realTimeIdx = idx = shows.getCurrentShowIndex();
 
             var show = shows.at(idx);
             show.loadEntries();
             pager.insertRight(show);
+
+            setCurrent();
+
+            function setCurrent() {
+                $('#now').hide();
+
+                // TODO LN: calculate the time until the end of the show instead of a hardcoded value
+                // TODO LN: suspend the timer when the user is interacting with the page (scroll, taps, etc)
+                timer = setTimeout(nextShow, 5000);
+            }
+
+            function unsetCurrent() {
+                $('#now').show();
+
+                clearTimeout(timer);
+            }
+
+            function nextShow() {
+                realTimeIdx = idx + 1;
+                goRight();
+            }
 
             function goRight() {
                 if (idx + 1 >= shows.length) {
@@ -200,6 +233,12 @@
                 show.loadEntries();
 
                 pager.insertRight(show);
+
+                if (idx === realTimeIdx) {
+                    setCurrent();
+                } else {
+                    unsetCurrent();
+                }
             }
 
             function goLeft() {
@@ -211,10 +250,33 @@
                 show.loadEntries();
 
                 pager.insertLeft(show);
+
+                if (idx === realTimeIdx) {
+                    setCurrent();
+                } else {
+                    unsetCurrent();
+                }
             }
 
             $('#prev').click(goLeft);
             $('#next').click(goRight);
+
+            $('#now').click(function() {
+                var newIdx = shows.getCurrentShowIndex();
+
+                var show = shows.at(newIdx);
+                show.loadEntries();
+
+                if (newIdx > idx) {
+                    pager.insertRight(show);
+                } else {
+                    pager.insertLeft(show);
+                }
+
+                idx = newIdx;
+
+                setCurrent();
+            });
         });
     }
 
