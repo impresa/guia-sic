@@ -16,7 +16,7 @@
                     .then(function (data) {
                         that.set('entries', data);
                     }, function () {
-                        that.set('entries', [])
+                        that.set('entries', []);
                     });
             }
         }
@@ -27,7 +27,7 @@
         getCurrentShowIndex: function () {
             //var now = +new Date(),
             // Hardcode a time
-            var now = 1424980800000,
+            var now = 1424945700000,
                 show = 0;
 
             for (var i = 0; i < this.models.length; i++) {
@@ -213,8 +213,8 @@
                 pager.insertLeft(show);
             }
 
-            window.goRight = goRight;
-            window.goLeft = goLeft;
+            $('#prev').click(goLeft);
+            $('#next').click(goRight);
         });
     }
 

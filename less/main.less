@@ -94,6 +94,25 @@ body {
   z-index: 1;
 }
 
+#next,  #prev {
+  position: fixed;
+  bottom: 0;
+  top: @headerSize;
+  border: 0;
+  outline: 0;
+  width: 50px;
+  z-index: 3;
+  background: 0;
+}
+
+#next {
+  right: 0;
+}
+
+#prev {
+  left: 0;
+}
+
 // entries
 .entries {
   width: 100%;
