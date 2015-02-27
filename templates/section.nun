@@ -16,5 +16,5 @@
     {% endif %}
 </header>
 {% for entry in it.entries %}
-    {% include 'article.nun' %}
+    {% include 'article' %}
 {% endfor %}

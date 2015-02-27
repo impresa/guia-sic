@@ -2,18 +2,29 @@
 
     var env = new nunjucks.Environment();
 
-    env.addFilter('dateformat', function(date, formatStr) {
+    env.addFilter('dateformat', function (date, formatStr) {
         return moment(date).format(formatStr);
     });
 
     // Models
     var ShowM = Backbone.Model.extend({
+        loadEntries: function () {
+            var that = this;
 
+            if (!this.get('entries')) {
+                $.getJSON('data/' + this.get('startDate') + '.json')
+                    .then(function (data) {
+                        that.set('entries', data);
+                    }, function () {
+                        that.set('entries', [])
+                    });
+            }
+        }
     });
 
     var ShowC = Backbone.Collection.extend({
         model: ShowM,
-        getCurrentShowIndex: function() {
+        getCurrentShowIndex: function () {
             //var now = +new Date(),
             // Hardcode a time
             var now = 1424980800000,
@@ -78,7 +89,7 @@
 
             this.render();
         },
-        setPosition: function(position, transition) {
+        setPosition: function (position, transition) {
             transition = transition === undefined;
 
             this.position = position;
@@ -98,11 +109,11 @@
 
             return this;
         },
-        show: function() {
+        show: function () {
             this.$el.show();
             return this;
         },
-        hide: function() {
+        hide: function () {
             this.$el.hide();
             return this;
         }
@@ -175,14 +186,20 @@
             shows = new ShowC(channel['schedules'][0]['tvShows']);
 
             idx = shows.getCurrentShowIndex();
-            pager.insertRight(shows.at(idx));
+
+            var show = shows.at(idx);
+            show.loadEntries();
+            pager.insertRight(show);
 
             function goRight() {
                 if (idx + 1 >= shows.length) {
                     return;
                 }
 
-                pager.insertRight(shows.at(++idx));
+                var show = shows.at(++idx);
+                show.loadEntries();
+
+                pager.insertRight(show);
             }
 
             function goLeft() {
@@ -190,7 +207,10 @@
                     return;
                 }
 
-                pager.insertLeft(shows.at(--idx));
+                var show = shows.at(--idx);
+                show.loadEntries();
+
+                pager.insertLeft(show);
             }
 
             window.goRight = goRight;
